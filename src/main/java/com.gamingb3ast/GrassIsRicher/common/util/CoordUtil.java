@@ -1,5 +1,8 @@
 package com.gamingb3ast.GrassIsRicher.common.util;
 
+import net.minecraft.block.Block;
+import net.minecraft.world.World;
+
 public class CoordUtil {
 
     private int x;
@@ -17,5 +20,16 @@ public class CoordUtil {
     }
     public int getX() { return x; }
     public int getZ() { return z; }
+    public int getTopBlockTypeY(World w, Block block)
+    {
+        int k;
+
+        for (k = 3; !(w.getBlock(x, k, z) == block); k++)
+        {
+            ;
+        }
+
+        return k;
+    }
     public String toString() {return "X: " + x + ", Z: " + z; }
 }

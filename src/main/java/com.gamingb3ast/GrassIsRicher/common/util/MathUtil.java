@@ -30,9 +30,13 @@ public class MathUtil {
             case "RANDOM":
                 for(int i = 0; i < num; i++)
                 {
+                    double radius = 20+(Math.random()*100);
+                    //System.out.println("Grass Gen: Radius = " + radius);
+                    double radian = Math.random()*(2*Math.PI);
+                    System.out.println("Grass Gen: Radian = " + radian);
                     queue.add(
-                                unitCircleCoords((int)(50+Math.random()*350), (int)(Math.random()*Math.PI*2))
-                                .addXZ((int)player.posX, (int)player.posY)
+                                unitCircleCoords(radius, radian)
+                                .addXZ((int)player.posX, (int)player.posZ)
                     );
                 }
                 break;
@@ -54,10 +58,10 @@ public class MathUtil {
     }
 
 
-    public static CoordUtil unitCircleCoords(int radius, int radianAngle)
+    public static CoordUtil unitCircleCoords(double radius, double radianAngle)
     {
-        int x = radius*(int)Math.cos(radianAngle);
-        int z = radius*(int)Math.sin(radianAngle);
-        return new CoordUtil(x, z);
+        double x = radius*Math.cos(radianAngle);
+        double z = radius*Math.sin(radianAngle);
+        return new CoordUtil((int)x, (int)z);
     }
 }

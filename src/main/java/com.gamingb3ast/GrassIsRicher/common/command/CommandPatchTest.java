@@ -3,11 +3,13 @@ package com.gamingb3ast.GrassIsRicher.common.command;
 
 import com.gamingb3ast.GrassIsRicher.common.util.CoordUtil;
 import com.gamingb3ast.GrassIsRicher.common.util.MathUtil;
+import net.minecraft.block.BlockGrass;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.World;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,9 +37,12 @@ public class CommandPatchTest extends CommandBase {
                 MathUtil.addCoords(player, amount);
                 while(!MathUtil.queue.isEmpty()) {
                     CoordUtil coords = MathUtil.queue.poll();
-                    player.addChatMessage(new ChatComponentText("Growing at " + coords));
-                    for(int y = 60; y < 100; y++) {
-                        player.worldObj.setBlock(coords.getX(), y, coords.getZ(), Blocks.glass);
+                    World w = sender.getEntityWorld();
+                    int y = coords.getTopBlockTypeY(w, Blocks.grass);
+                    if (w.getBlock(coords.getX(), y, coords.getZ()) instanceof BlockGrass)
+                    {
+                        Blocks.grass.func_149853_b(w, w.rand, coords.getX(), y, coords.getZ());
+                        player.addChatMessage(new ChatComponentText("Growing at " + coords));
                     }
                 }
             }
