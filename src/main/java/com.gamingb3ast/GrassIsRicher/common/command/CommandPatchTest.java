@@ -7,6 +7,7 @@ import net.minecraft.block.BlockGrass;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
@@ -36,13 +37,14 @@ public class CommandPatchTest extends CommandBase {
                 player.addChatMessage(new ChatComponentText("Beginning Grass patch simulation... Amount of patches:: " + amount));
                 MathUtil.addCoords(player, amount);
                 while(!MathUtil.queue.isEmpty()) {
-                    CoordUtil coords = MathUtil.queue.poll();
+                    CoordUtil coords = MathUtil.queue.peek();
                     World w = sender.getEntityWorld();
                     int y = coords.getTopBlockTypeY(w, Blocks.grass);
                     if (w.getBlock(coords.getX(), y, coords.getZ()) instanceof BlockGrass)
                     {
-                        Blocks.grass.func_149853_b(w, w.rand, coords.getX(), y, coords.getZ());
-                        player.addChatMessage(new ChatComponentText("Growing at " + coords));
+                            Blocks.grass.func_149853_b(w, w.rand, coords.getX(), y, coords.getZ());
+                            player.addChatMessage(new ChatComponentText("Growing at " + coords));
+                            MathUtil.queue.poll();
                     }
                 }
             }

@@ -31,5 +31,9 @@ public class CoordUtil {
 
         return k;
     }
+    public CoordUtil getRandomCoordInRange(int diameter)
+    {
+        return this.addXZ((int)(Math.random()*diameter)-(diameter/2), (int)(Math.random()*diameter)-(diameter/2));
+    }
     public String toString() {return "X: " + x + ", Z: " + z; }
 }
