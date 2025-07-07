@@ -1,6 +1,6 @@
 package com.gamingb3ast.GrassLiG.common;
 
-public class EventHandler{
+public class EventHandler {
 
-    //@SubscribeEvent
+    // @SubscribeEvent
 }
