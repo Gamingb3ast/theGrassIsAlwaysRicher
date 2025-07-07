@@ -1,16 +1,21 @@
-[
-  {
-    "modid": "grassIsRicher",
-    "name": "The Grass Is Always Richer",
-    "description": "[DESCRIPTION]",
-    "version": "1.0",
-    "mcversion": "1.7.10",
-    "url": "",
-    "updateUrl": "",
-    "authorList": ["GamingB3ast", "Modbder"],
-    "credits": "Author: GamingB3ast, \n Suggestor: @_thatdog",
-    "logoFile": "",
-    "screenshots": [],
-    "dependencies": []
-  }
-]
+{
+	"modListVersion": 2,
+	"modList": [{
+		"modid": "${modId}",
+		"name": "${modName}",
+		"description": "[DESCRIPTION]",
+		"version": "${modVersion}",
+		"mcversion": "${minecraftVersion}",
+		"url": "",
+		"updateUrl": "",
+    "authorList": ["GamingB3ast"],
+    "credits": "Author: GamingB3ast, Suggestor: @_thatdog",
+		"logoFile": "",
+		"screenshots": [],
+		"parent": "",
+		"requiredMods": [],
+		"dependencies": [],
+		"dependants": [],
+		"useDependencyInformation": false
+	}]
+}

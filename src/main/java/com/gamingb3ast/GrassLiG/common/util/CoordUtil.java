@@ -1,4 +1,4 @@
-package com.gamingb3ast.GrassIsRicher.common.util;
+package com.gamingb3ast.GrassLiG.common.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -23,7 +23,7 @@ public class CoordUtil {
     public int getTopBlockTypeY(World w, Block block)
     {
         int k;
-        //todo: instead of configurable k value, have it be the player y level and then check a few blocks in either direction (configurable distance) 
+        //todo: instead of configurable k value, have it be the player y level and then check a few blocks in either direction (configurable distance)
 
 //For example k=60, k+=1, k-=2, k+=3, k-=4 and so on until it checks k+=n where n is configurable
         for (k = 3; !(w.getBlock(x, k, z) == block); k++)

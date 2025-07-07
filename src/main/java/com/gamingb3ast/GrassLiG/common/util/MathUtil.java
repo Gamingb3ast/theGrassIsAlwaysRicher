@@ -1,4 +1,4 @@
-package com.gamingb3ast.GrassIsRicher.common.util;
+package com.gamingb3ast.GrassLiG.common.util;
 
 import net.minecraft.entity.player.EntityPlayer;
 import java.util.LinkedList;
@@ -75,7 +75,7 @@ public class MathUtil {
                         );
                     }
                 }
-                
+
 
             case "SEQUENTIAL":
                 //Grabs num amount of initial coordinates, then spreads from those coordinates
