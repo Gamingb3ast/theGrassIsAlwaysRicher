@@ -14,7 +14,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 import com.gamingb3ast.GrassLiG.Config;
-import com.gamingb3ast.GrassLiG.GrassMod;
 import com.gamingb3ast.GrassLiG.common.util.CoordUtil;
 import com.gamingb3ast.GrassLiG.common.util.MathUtil;
 
@@ -73,7 +72,8 @@ public class CommandsGrassMod extends CommandBase {
                 } else if (args[0].equals("setConfigValue")) {
                     try {
                         String name = args[1];
-                        // TODO: See what can be done around this and strings
+                        // TODO: See what can be done around this and strings (Try using Object class, see what happens
+                        // when changed and read)
                         float value = (float) parseDouble(sender, args[2]);
                         Config.updateConfigProp(name, value, player);
                     } catch (IndexOutOfBoundsException e) {
@@ -85,6 +85,16 @@ public class CommandsGrassMod extends CommandBase {
                         // TODO: See what can be done around this and strings
                         ChatComponentText message = new ChatComponentText(
                             "Second argument needs to be an integer! Check command usage");
+                        message.getChatStyle()
+                            .setColor(EnumChatFormatting.RED);
+                        player.addChatMessage(message);
+                    }
+                } else if (args[0].equals("resetConfigValue")) {
+                    try {
+                        String name = args[1];
+                        Config.resetConfigProp(name, player);
+                    } catch (IndexOutOfBoundsException e) {
+                        ChatComponentText message = new ChatComponentText("Not enough arguments! Check command usage");
                         message.getChatStyle()
                             .setColor(EnumChatFormatting.RED);
                         player.addChatMessage(message);
@@ -113,14 +123,14 @@ public class CommandsGrassMod extends CommandBase {
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args) {
         switch (args.length) {
             case 1:
-                GrassMod.LOG.info("Case 1");
-                return Arrays.asList("setConfigValue", "simulateGrassPatches", "getConfigValue");
+                return Arrays.asList("setConfigValue", "getConfigValue", "resetConfigValue", "simulateGrassPatches");
             case 2:
-                GrassMod.LOG.info("Case 2");
                 if (args[0].equals("setConfigValue")) return Config.configuration.getCategory("general")
                     .getPropertyOrder();
                 if (args[0].equals("simulateGrassPatches")) return Arrays.asList("0", "1", "2", "3", "4", "5", "etc.");
                 if (args[0].equals("getConfigValue")) return Config.configuration.getCategory("general")
+                    .getPropertyOrder();
+                if (args[0].equals("resetConfigValue")) return Config.configuration.getCategory("general")
                     .getPropertyOrder();
         }
         return null;
