@@ -109,6 +109,16 @@ public class CommandsGrassMod extends CommandBase {
                             .setColor(EnumChatFormatting.RED);
                         player.addChatMessage(message);
                     }
+                } else if (args[0].equals("getConfigDescription")) {
+                    try {
+                        String name = args[1];
+                        Config.getPropComment(name, player);
+                    } catch (IndexOutOfBoundsException e) {
+                        ChatComponentText message = new ChatComponentText("Not enough arguments! Check command usage");
+                        message.getChatStyle()
+                            .setColor(EnumChatFormatting.RED);
+                        player.addChatMessage(message);
+                    }
                 }
             } else {
                 ChatComponentText message = new ChatComponentText(getCommandUsage(sender));
@@ -123,15 +133,22 @@ public class CommandsGrassMod extends CommandBase {
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args) {
         switch (args.length) {
             case 1:
-                return Arrays.asList("setConfigValue", "getConfigValue", "resetConfigValue", "simulateGrassPatches");
+                return Arrays.asList(
+                    "setConfigValue",
+                    "getConfigValue",
+                    "resetConfigValue",
+                    "getConfigDescription",
+                    "simulateGrassPatches");
             case 2:
-                if (args[0].equals("setConfigValue")) return Config.configuration.getCategory("general")
-                    .getPropertyOrder();
-                if (args[0].equals("simulateGrassPatches")) return Arrays.asList("0", "1", "2", "3", "4", "5", "etc.");
-                if (args[0].equals("getConfigValue")) return Config.configuration.getCategory("general")
-                    .getPropertyOrder();
-                if (args[0].equals("resetConfigValue")) return Config.configuration.getCategory("general")
-                    .getPropertyOrder();
+                switch (args[0]) {
+                    case "setConfigValue", "getConfigValue", "resetConfigValue", "getConfigDescription" -> {
+                        return Config.configuration.getCategory("general")
+                            .getPropertyOrder();
+                    }
+                    case "simulateGrassPatches" -> {
+                        return Arrays.asList("0", "1", "2", "3", "4", "5", "etc.");
+                    }
+                }
         }
         return null;
     }
