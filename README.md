@@ -1,5 +1,5 @@
 [READ ME]
-Put some stuff here
+Put some stuff here before release
 
 [![Build and test](https://github.com/Gamingb3ast/theGrassIsAlwaysRicher/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/Gamingb3ast/theGrassIsAlwaysRicher/actions/workflows/build-and-test.yml)
 
